@@ -10,7 +10,7 @@ on:
 jobs:
   build:
     name: Compilação
-    runs-on: ubuntu:latest
+    runs-on: ubuntu-latest
     
     steps:
     - name: Git Checkout
@@ -23,4 +23,8 @@ jobs:
         cache: maven
     - name: Compilação 
       run: mvn -B compile --file pom.xml
-    
+
+  code-quality:
+    name: Qualidade de Código
+    needs: build
+    runs-on: ubuntu-lastest
