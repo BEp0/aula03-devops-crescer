@@ -28,3 +28,27 @@ jobs:
     name: Qualidade de Código
     needs: build
     runs-on: ubuntu-lastest
+    
+    steps:
+      - name: Git Checkout
+        uses: actions/checkout@v3
+      - name: Adicionar permissão para mvnw
+        run: chmod +x mvnw
+      - name: Análise SonarCloud
+        run: ./mvnw verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=lab-devops-project
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAL_TOKEN }}
+
+  sec-tests:
+    name: Análise de Segurança
+    needs: build
+    runs-on: ubuntu-latest
+    
+    steps: 
+    - name: Simula execução de testes de segurança
+      run: echo Testes de segurança executados com sucesso
+
+  tests:
+    name: testes automatizados
+    needs: build
+    runs-on: ubuntu-latest
