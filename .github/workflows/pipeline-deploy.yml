@@ -13,6 +13,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - name: Git Checkout
+      uses: actions/checkout@v3
     - name: Configura JDK 11
       uses: actions/setup-java@v3
       with:
@@ -28,6 +30,10 @@ jobs:
     runs-on: ubuntu-latest        
     
     steps:
+    - name: Git Checkout
+      uses: actions/checkout@v3
+    - name: Adiciona permissão para mvnw
+      run: chmod +x mvnw
     - name: Análise SonarCloud
       run: ./mvnw verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=lab-devops-project
       env:
@@ -39,6 +45,8 @@ jobs:
     runs-on: ubuntu-latest    
     
     steps:
+    - name: Git Checkout
+      uses: actions/checkout@v3
     - name: Configura JDK 11
       uses: actions/setup-java@v3
       with:
@@ -82,9 +90,8 @@ jobs:
         registry: registry.heroku.com
         username: ${{ secrets.HEROKU_EMAIL }}
         password: ${{ secrets.HEROKU_API_KEY }}
-#     - name: Publicação
-#       run: heroku container:release -a hello-world-crescer-bernardo web 
-#       env:
-#         HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }
-#         HEROKU_EMAIL: ${{ secrets.HEROKU_EMAIL }}
-        
+    - name: Publicação
+      run: heroku container:release -a hello-world-crescer-bernardo web 
+      env:
+        HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }
+        HEROKU_EMAIL: ${{ secrets.HEROKU_EMAIL }}
