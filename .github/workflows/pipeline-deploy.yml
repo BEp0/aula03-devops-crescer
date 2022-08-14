@@ -82,9 +82,9 @@ jobs:
         registry: registry.heroku.com
         username: ${{ secrets.HEROKU_EMAIL }}
         password: ${{ secrets.HEROKU_API_KEY }}
-    - name: Publicação
-      run: heroku container:release -a hello-world-crescer-bernardo web 
-      env:
-        HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }
-        HEROKU_EMAIL: ${{ secrets.HEROKU_EMAIL }}
+#     - name: Publicação
+#       run: heroku container:release -a hello-world-crescer-bernardo web 
+#       env:
+#         HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }
+#         HEROKU_EMAIL: ${{ secrets.HEROKU_EMAIL }}
         
